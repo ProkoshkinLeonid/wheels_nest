@@ -4,6 +4,7 @@ import { WheelsService } from '../services/wheels.service';
 import {Wheels} from "../models/wheels.entitiy";
 import {TypeOrmModule} from '@nestjs/typeorm'
 import {WheelsHttpModule} from "./wheels-http.module";
+import {FileModule} from "./file.module";
 
 @Module({
   imports: [AppModule,
@@ -16,7 +17,7 @@ import {WheelsHttpModule} from "./wheels-http.module";
       database: 'mydb',
       entities: [Wheels],
       synchronize: true,
-    }), WheelsHttpModule],
+    }), WheelsHttpModule, FileModule],
   controllers: [WheelsController],
   providers: [WheelsService],
 })
