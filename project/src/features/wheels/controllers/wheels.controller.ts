@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Res} from '@nestjs/common';
 import { WheelsService } from '../services/wheels.service';
 
 @Controller("wheels")
@@ -11,13 +11,16 @@ export class WheelsController {
     return activeItems.filter(item => item.isActive)
   }
   @Get(":id")
-  getOne(@Param('id') id) {
-    return this.wheelsService.findOne(id)
+  async getOne(@Res() res, @Param('id') id) {
+    console.log(await this.wheelsService.findOne(id))
+    return res.status(200).json(await this.wheelsService.findOne(id))
   }
 
   @Post("/add")
-  add(@Body() wheelsBody: { price: number; name: string, description: string, count: number }) {
-
+ async add(@Res() res, @Body() wheelsBody: { price: number; name: string, description: string, count: number, filesGuids: string[] }) {
+      const result = await this.wheelsService.add(wheelsBody)
+      await this.wheelsService.update(result.identifiers[0].id, wheelsBody.filesGuids)
+      return res.status(200).json({ id: result.identifiers[0].id })
   }
 
   @Get("/remove/:id" )

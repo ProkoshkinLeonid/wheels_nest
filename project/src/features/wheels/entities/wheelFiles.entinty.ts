@@ -11,6 +11,6 @@ export class WheelFile {
     @Column("text")
     name: string
 
-    @Column("integer", { nullable: true })
+    @Column("integer", { nullable: true, name: "wheels_id" })
     wheelsId: number | null
 }

@@ -22,9 +22,6 @@ export class Wheels {
     @Column("boolean", { default: true })
     isActive: boolean
 
-    @Column('varchar', { array: true })
-    filesGuids: string[];
-
     @OneToMany(() => WheelFile, image => image.wheelsId)
     images: WheelFile[]
 }
