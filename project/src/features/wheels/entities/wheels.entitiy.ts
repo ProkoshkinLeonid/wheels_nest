@@ -11,10 +11,13 @@ export class Wheels {
     price: number
 
     @Column("text")
-    name: string
+    model: string
 
     @Column("text")
-    description: string
+    size: string
+
+    @Column("text")
+    season: string
 
     @Column("integer")
     count: number

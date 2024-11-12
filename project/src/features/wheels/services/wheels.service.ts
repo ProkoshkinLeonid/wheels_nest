@@ -13,8 +13,19 @@ export class WheelsService {
       private wheelsFilesRepository: Repository<WheelFile>,
   ) {}
 
-  findAll(): Promise<Wheels[]> {
-    return this.wheelsRepository.find();
+  async findAll() {
+    const allWheels = await this.wheelsRepository.find()
+    const allFiles = await this.wheelsFilesRepository.createQueryBuilder("wheelsFile")
+        .select(['wheelsFile.guid', 'wheelsFile.wheelsId'])
+        .where('wheelsFile.wheels_id IN (:...wheelIds)', { wheelIds: allWheels.map(wheel => wheel.id) })
+        .getMany()
+    return allWheels.map((wheel) => {
+      const filesGuids = allFiles.filter(file => file.wheelsId === wheel.id).map(file => file.guid)
+      return {
+        ...wheel,
+        files: filesGuids
+      }
+    });
   }
 
  async findOne(id: number) {
@@ -29,7 +40,7 @@ export class WheelsService {
      }
   }
 
-  async add(data: { price: number; name: string, description: string, count: number, filesGuids: string[] }) {
+  async add(data: { price: number; model: string, size: string, season: string, count: number, filesGuids: string[] }) {
     return await this.wheelsRepository.insert(data);
   }
 

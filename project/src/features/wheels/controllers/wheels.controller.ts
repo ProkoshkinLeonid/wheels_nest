@@ -1,5 +1,6 @@
-import {Body, Controller, Get, Param, Post, Res} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Req, Res} from '@nestjs/common';
 import { WheelsService } from '../services/wheels.service';
+import {Wheels} from "../entities/wheels.entitiy";
 
 @Controller("wheels")
 export class WheelsController {
@@ -7,8 +8,7 @@ export class WheelsController {
 
   @Get()
   async getAll() {
-    const activeItems = await this.wheelsService.findAll()
-    return activeItems.filter(item => item.isActive)
+    return await this.wheelsService.findAll()
   }
   @Get(":id")
   async getOne(@Res() res, @Param('id') id) {
@@ -17,9 +17,9 @@ export class WheelsController {
   }
 
   @Post("/add")
- async add(@Res() res, @Body() wheelsBody: { price: number; name: string, description: string, count: number, filesGuids: string[] }) {
-      const result = await this.wheelsService.add(wheelsBody)
-      await this.wheelsService.update(result.identifiers[0].id, wheelsBody.filesGuids)
+  async add(@Body() body: { price: number; model: string, size: string, season: string, count: number, filesGuids: string[] }, @Req() req, @Res() res) {
+      const result = await this.wheelsService.add(body)
+      await this.wheelsService.update(result.identifiers[0].id, body.filesGuids)
       return res.status(200).json({ id: result.identifiers[0].id })
   }
 
