@@ -1,4 +1,4 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import { WheelsService } from '../services/wheels.service';
 
 @Controller("wheels")
@@ -13,6 +13,11 @@ export class WheelsController {
   @Get(":id")
   getOne(@Param('id') id) {
     return this.wheelsService.findOne(id)
+  }
+
+  @Post("/add")
+  add(@Body() wheelsBody: { price: number; name: string, description: string, count: number }) {
+
   }
 
   @Get("/remove/:id" )

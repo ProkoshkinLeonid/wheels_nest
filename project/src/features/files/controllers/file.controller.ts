@@ -21,14 +21,14 @@ export class FileController {
     // remove(@Param("id") id) {
     //     return this.wheelsService.remove(id)
     // }
-    @Post('*')
-    @UseInterceptors(FileInterceptor('file'))
-    index(
-        @Req() request: Request,
-        @Res() response: Response,
-        @UploadedFile() file: Express.Multer.File,
-    ): Observable<Response> {
-
-    }
+    // @Post('*')
+    // @UseInterceptors(FileInterceptor('file'))
+    // index(
+    //     @Req() request: Request,
+    //     @Res() response: Response,
+    //     @UploadedFile() file: Express.Multer.File,
+    // ): Observable<Response> {
+    //
+    // }
 
 }

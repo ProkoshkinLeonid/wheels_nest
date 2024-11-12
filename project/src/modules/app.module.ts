@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { WheelsController } from '../controllers/wheels.controller';
-import { WheelsService } from '../services/wheels.service';
-import {Wheels} from "../models/wheels.entitiy";
 import {TypeOrmModule} from '@nestjs/typeorm'
-import {WheelsHttpModule} from "./wheels-http.module";
 import {FileModule} from "./file.module";
+import {WheelsModule} from "./wheels.module";
+import {Wheels} from "../features/wheels/entities/wheels.entitiy";
+import {WheelsController} from "../features/wheels/controllers/wheels.controller";
+import {WheelsService} from "../features/wheels/services/wheels.service";
+import {WheelFile} from "../features/wheels/entities/wheelFiles.entinty";
 
 @Module({
   imports: [AppModule,
@@ -15,9 +16,9 @@ import {FileModule} from "./file.module";
       username: 'myuser',
       password: 'mypassword',
       database: 'mydb',
-      entities: [Wheels],
+      entities: [Wheels, WheelFile],
       synchronize: true,
-    }), WheelsHttpModule, FileModule],
+    }), WheelsModule, FileModule],
   controllers: [WheelsController],
   providers: [WheelsService],
 })
