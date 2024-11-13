@@ -1,23 +1,18 @@
-import {Injectable} from "@nestjs/common";
-import {InjectRepository} from "@nestjs/typeorm";
-import {Repository} from "typeorm";
+import { Injectable } from "@nestjs/common"
 
 @Injectable()
 export class FileService {
-    constructor(
-        // @InjectRepository(Wheels)
-        // private wheelsRepository: Repository<Wheels>,
-    ) {}
+  constructor() {} // private wheelsRepository: Repository<Wheels>, // @InjectRepository(Wheels)
 
-    // findAll(): Promise<Wheels[]> {
-    //     return this.wheelsRepository.find();
-    // }
-    //
-    // findOne(id: number): Promise<Wheels | null> {
-    //     return this.wheelsRepository.findOneBy({ id });
-    // }
-    //
-    // async remove(id: number): Promise<void> {
-    //     await this.wheelsRepository.delete(id);
-    // }
+  // findAll(): Promise<Wheels[]> {
+  //     return this.wheelsRepository.find();
+  // }
+  //
+  // findOne(id: number): Promise<Wheels | null> {
+  //     return this.wheelsRepository.findOneBy({ id });
+  // }
+  //
+  // async remove(id: number): Promise<void> {
+  //     await this.wheelsRepository.delete(id);
+  // }
 }

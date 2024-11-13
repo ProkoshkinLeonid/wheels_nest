@@ -1,16 +1,16 @@
-import {Column, Entity, OneToMany, PrimaryColumn} from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm"
 
 @Entity("wheel_files")
 export class WheelFile {
-    @PrimaryColumn("uuid")
-    guid: string
+  @PrimaryColumn("uuid")
+  guid: string
 
-    @Column("bytea")
-    bytes: Buffer
+  @Column("bytea")
+  bytes: Buffer
 
-    @Column("text")
-    name: string
+  @Column("text")
+  name: string
 
-    @Column("integer", { nullable: true, name: "wheels_id" })
-    wheelsId: number | null
+  @Column("integer", { nullable: true, name: "wheels_id" })
+  wheelsId: number | null
 }
