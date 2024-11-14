@@ -2,9 +2,9 @@ import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 
+import { WheelDto } from "../dto/wheel.dto"
 import { WheelFile } from "../entities/wheel-flile.entinty"
 import { Wheels } from "../entities/wheel.entitiy"
-import {WheelDto} from "../dto/wheel.dto";
 
 @Injectable()
 export class WheelService {
