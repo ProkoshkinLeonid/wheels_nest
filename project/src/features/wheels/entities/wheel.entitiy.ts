@@ -1,6 +1,6 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm"
 
-import { WheelFile } from "./wheelFiles.entinty"
+import { WheelFile } from "./wheel-flile.entinty"
 
 @Entity("wheels")
 export class Wheels {

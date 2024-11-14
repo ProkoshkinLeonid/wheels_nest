@@ -2,11 +2,12 @@ import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 
-import { WheelFile } from "../entities/wheelFiles.entinty"
-import { Wheels } from "../entities/wheels.entitiy"
+import { WheelFile } from "../entities/wheel-flile.entinty"
+import { Wheels } from "../entities/wheel.entitiy"
+import {WheelDto} from "../dto/wheel.dto";
 
 @Injectable()
-export class WheelsService {
+export class WheelService {
   constructor(
     @InjectRepository(Wheels)
     private wheelsRepository: Repository<Wheels>,
@@ -46,14 +47,7 @@ export class WheelsService {
     }
   }
 
-  async add(data: {
-    price: number
-    model: string
-    size: string
-    season: string
-    count: number
-    filesGuids: string[]
-  }) {
+  async add(data: WheelDto) {
     return await this.wheelsRepository.insert(data)
   }
 

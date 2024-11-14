@@ -1,10 +1,11 @@
-import { Body, Controller, Get, Param, Post, Req, Res } from "@nestjs/common"
+import { Body, Controller, Get, Param, Post, Res } from "@nestjs/common"
 
-import { WheelsService } from "../services/wheels.service"
+import { WheelDto } from "../dto/wheel.dto"
+import { WheelService } from "../services/wheel.service"
 
 @Controller("wheels")
-export class WheelsController {
-  constructor(private readonly wheelsService: WheelsService) {}
+export class WheelController {
+  constructor(private readonly wheelsService: WheelService) {}
 
   @Get()
   async getAll() {
@@ -18,15 +19,7 @@ export class WheelsController {
   @Post("/add")
   async add(
     @Body()
-    body: {
-      price: number
-      model: string
-      size: string
-      season: string
-      count: number
-      filesGuids: string[]
-    },
-    @Req() req,
+    body: WheelDto,
     @Res() res,
   ) {
     const result = await this.wheelsService.add(body)

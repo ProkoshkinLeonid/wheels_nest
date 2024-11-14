@@ -3,7 +3,6 @@ import {
   Get,
   Param,
   Post,
-  Req,
   Res,
   UploadedFile,
   UseInterceptors,
@@ -11,8 +10,8 @@ import {
 import { FileInterceptor } from "@nestjs/platform-express"
 import { v4 as generateId } from "uuid"
 
-import { WheelFile } from "../entities/wheelFiles.entinty"
-import { WheelsFileService } from "../services/wheelFiles.service"
+import { WheelFile } from "../entities/wheel-flile.entinty"
+import { WheelsFileService } from "../services/wheel-file.service"
 
 @Controller("wheels/files")
 export class WheelsFilesController {
@@ -21,7 +20,6 @@ export class WheelsFilesController {
   @Post("/upload")
   @UseInterceptors(FileInterceptor("file"))
   async index(
-    @Req() request,
     @Res() response,
     @UploadedFile() file: Express.Multer.File & { guid: string },
   ) {
@@ -33,7 +31,7 @@ export class WheelsFilesController {
       bytes: Buffer.from(file.buffer),
     }
     try {
-      const result = await this.wheelsFileService.add(wheelFile)
+      await this.wheelsFileService.add(wheelFile)
       return response.status(200).json({ guid })
     } catch (error) {
       response.status(500).send({ message: "Ошибка при добавлении файла" })

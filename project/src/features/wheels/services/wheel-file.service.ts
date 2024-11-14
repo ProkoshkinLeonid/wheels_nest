@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 
-import { WheelFile } from "../entities/wheelFiles.entinty"
+import { WheelFile } from "../entities/wheel-flile.entinty"
 
 @Injectable()
 export class WheelsFileService {
