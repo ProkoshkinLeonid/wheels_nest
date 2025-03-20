@@ -22,6 +22,9 @@ export class Wheels {
   @Column("integer")
   count: number
 
+  @Column("integer")
+  storehouse: number
+
   @Column("boolean", { default: true })
   isActive: boolean
 

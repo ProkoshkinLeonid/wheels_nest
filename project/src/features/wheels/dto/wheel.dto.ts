@@ -3,6 +3,7 @@ export type WheelDto = {
   model: string
   size: string
   season: string
+  storehouse: number
   count: number
   filesGuids: string[]
 }

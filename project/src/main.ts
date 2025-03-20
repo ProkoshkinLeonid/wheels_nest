@@ -7,7 +7,7 @@ import { AppModule } from "./app.module"
 const start = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   const configService = app.get(ConfigService)
-  const PORT = configService.get("PORT")
+  const PORT = 5000
   app.enableCors({
     credentials: true,
     origin: true,
