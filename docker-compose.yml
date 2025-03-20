@@ -1,6 +1,6 @@
 version: '3'
 services:
-  db:
+  postgres:
     image: postgres:16
     container_name: postgres-16
     environment:
@@ -10,3 +10,12 @@ services:
     ports:
       - "5432:5432"
     restart: always
+  backend:
+    build: ./project
+    container_name: backend
+    command: npm run start
+    restart: always
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"

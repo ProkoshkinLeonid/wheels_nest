@@ -18,7 +18,7 @@ import { WheelModule } from "./modules/wheel.module"
     }),
     TypeOrmModule.forRoot({
       type: "postgres",
-      host: "localhost",
+      host: "postgres",
       port: 5432,
       username: "myuser",
       password: "mypassword",
